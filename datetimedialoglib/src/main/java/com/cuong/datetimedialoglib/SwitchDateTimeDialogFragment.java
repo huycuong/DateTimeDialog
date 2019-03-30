@@ -135,7 +135,7 @@ public class SwitchDateTimeDialogFragment extends DialogFragment {
     @Override
     public @NonNull Dialog onCreateDialog(Bundle savedInstanceState) {
         super.onCreateDialog(savedInstanceState);
-
+        Log.d(TAG, "onCreateDialog");
         assert getActivity() != null;
         assert getContext() != null;
         
@@ -321,6 +321,7 @@ public class SwitchDateTimeDialogFragment extends DialogFragment {
             db = new AlertDialog.Builder(getContext());
         }
         db.setView(dateTimeLayout);
+
         if(mPositiveButton == null)
             mPositiveButton = getString(android.R.string.ok);
         db.setPositiveButton(mPositiveButton, new
@@ -356,6 +357,14 @@ public class SwitchDateTimeDialogFragment extends DialogFragment {
 
 
         return db.create();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        Log.d(TAG, "on start");
+        ((AlertDialog) getDialog()).getButton(AlertDialog.BUTTON_POSITIVE).setTextColor(getResources().getColor(R.color.colorPrimary));
+        ((AlertDialog) getDialog()).getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(getResources().getColor(R.color.colorPrimary));
     }
 
     @Override
